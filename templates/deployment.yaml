@@ -37,7 +37,7 @@ spec:
           securityContext:
             privileged: {{ default false .Values.pod.securityContext.privileged }}
           ports:
-            - containerPort: 9999
+            - containerPort: {{ .Values.service.internalPort }}
           volumeMounts:
             - name: fabio-properties
               mountPath: "/etc/fabio/fabio.properties"
@@ -53,7 +53,7 @@ spec:
           readinessProbe:
             httpGet:
               path: {{ .Values.probePath }}
-              port: {{ .Values.service.internalPort }}
+              port: {{ .Values.healthPort }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
