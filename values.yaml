@@ -41,7 +41,8 @@ resources:
     cpu: "400m"
     memory: "512Mi"
 
-probePath: /
+probePath: /health
+healthPort: 9998
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
